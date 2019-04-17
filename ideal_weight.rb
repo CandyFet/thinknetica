@@ -1,7 +1,7 @@
 puts "Введите Ваше имя"
-name = gets.chomp
+name = gets.chomp.capitalize!
 puts "Введите Ваш рост"
-height = gets.chomp.to_i
+height = gets.to_i
 weight = height - 110
 if weight < 0
   puts "#{name}, Ваш вес уже идеальный"

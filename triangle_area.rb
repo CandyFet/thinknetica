@@ -1,14 +1,15 @@
 puts "Введите высоту треугольника"
-height = gets.chomp.to_f
+height = gets.to_f
 while height < 0
   puts "Введите неотрицательную высоту треугольника"
-  height = gets.chomp.to_f
+  height = gets.to_f
 end
 
 puts "Введите основание треугольника"
-a = gets.chomp.to_f
+base = gets.to_f
 while a < 0
   puts "Введите неотрицательное основание треугольника"
-  a = gets.chomp.to_f
+  a = gets.to_f
 end
-puts "Площадь треугольника равна #{0.5*height*a}"
+area = 0.5 * height * base
+puts "Площадь треугольника равна #{area}"

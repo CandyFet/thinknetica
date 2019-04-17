@@ -1,17 +1,17 @@
 puts "Введите коэффициент a"
-a = gets.chomp.to_f
+a = gets.to_f
 puts "Введите коэффициент b"
-b = gets.chomp.to_f
+b = gets.to_f
 puts "Введите коэффициент c"
-c = gets.chomp.to_c
-d = b**2 - 4*a*c
+c = gets.to_f
+d = b**2 - 4 * a * c
 if d < 0
   puts "Корней нет!"
 elsif d = 0
-  x = b*-1/(2*a)
+  x = -b / (2 * a)
   puts "Уравнение имеет один корень #{x}"
 elsif d > 0
-  x1 = (b*-1 + Math.sqrt(d)) / (2*a)
-  x2 = (b*-1 - Math.sqrt(d)) / (2*a)
+  x1 = (-b + Math.sqrt(d)) / (2.0 * a)
+  x2 = (-b - Math.sqrt(d)) / (2.0 * a)
   puts "Уравнение имеет два корня #{x1} и #{x2}"
-end  
+end
