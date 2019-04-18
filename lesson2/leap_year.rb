@@ -1,58 +1,24 @@
 puts "Введите год"
 year = gets.to_i
+month_array = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 while year < 0
   puts "Введите неотрицательное значение"
   year = gets.to_i
 end
 leap_year = year % 4 == 0 && year % 100 || year % 400 == 0
-if leap_year
-  month_hash = {
-  1 => 31,
-  2 => 29,
-  3 => 31,
-  4 => 30,
-  5 => 31,
-  6 => 30,
-  7 => 31,
-  8 => 31,
-  9 => 30,
-  10 => 31,
-  11 => 30,
-  12 => 31}
-else
-  month_hash = {
-  1 => 31,
-  2 => 28,
-  3 => 31,
-  4 => 30,
-  5 => 31,
-  6 => 30,
-  7 => 31,
-  8 => 31,
-  9 => 30,
-  10 => 31,
-  11 => 30,
-  12 => 31}
-end
+month_array[1] = 29 if leap_year
 puts "Введите номер месяца"
 month = gets.to_i
-while month > 12 || month < 1
+until month.between?(1, 12)
   puts "Введите номер месяца в интервале от 1 до 12"
   month = gets.to_i
 end
 puts "Введите число месяца"
 day = gets.to_i
-while day > month_hash[month] || day < 1
-  puts "Введите число в интервале от 1 до #{month_hash[month]}"
+until day.between?(1, month_array[month - 1])
+  puts "Введите число в интервале от 1 до #{month_array[month - 1]}"
   day = gets.to_i
 end
-amount_of_days = 0
-(1..month).each {|month_in_each|
-if month_in_each == month
-  amount_of_days += day
-else
-  amount_of_days += month_hash[month_in_each]
-end
-}
-
-puts "Введенная дата явлется #{amount_of_days} днем года"
+sum_of_days_in_month = month_array.take(month - 1).sum
+amount_of_days = sum_of_days_in_month + day
+puts "Введенная дата является #{amount_of_days} днем года"

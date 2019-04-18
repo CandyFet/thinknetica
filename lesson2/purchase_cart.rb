@@ -1,7 +1,5 @@
-goods_name = ""
 goods_hash = {}
-sum = 0
-total_price = 0
+total = 0
 loop do
   puts "Введите название товара, для окончания ввода введите #{"стоп"}"
   goods_name = gets.chomp.capitalize!
@@ -10,12 +8,12 @@ loop do
   goods_price = gets.to_f
   puts "Введите количество товара"
   goods_qty = gets.to_i
-  goods_hash[goods_name] = {goods_price => goods_qty}
+  goods_hash[goods_name] = {price: goods_price, quantity: goods_qty}
 end
 
-goods_hash.each {|name, price_hash|
-  price_hash.each {|price, qty| sum = price * qty}
-    puts "Товар: #{name}, цена за эту позицию: #{sum}"
-    total_price += sum
-}
-puts "Сумма покупок: #{total_price}"
+goods_hash.each do|name, info|
+  item_total = info[:price] * info[:quantity]
+  total += item_total
+  puts "Товар: #{name}, цена за эту позицию: #{item_total}"
+end
+puts "Сумма покупок: #{total}"
