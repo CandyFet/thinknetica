@@ -1,7 +1,7 @@
 goods_hash = {}
 total = 0
 loop do
-  puts "Введите название товара, для окончания ввода введите #{"стоп"}"
+  puts 'Введите название товара, для окончания ввода введите "стоп"'
   goods_name = gets.chomp.capitalize!
   break if goods_name == "Стоп"
   puts "Введите цену товара"

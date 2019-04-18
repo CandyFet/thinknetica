@@ -5,7 +5,7 @@ while year < 0
   puts "Введите неотрицательное значение"
   year = gets.to_i
 end
-leap_year = year % 4 == 0 && year % 100 || year % 400 == 0
+leap_year = year % 4 == 0 && year % 100 != 0 || year % 400 == 0
 month_array[1] = 29 if leap_year
 puts "Введите номер месяца"
 month = gets.to_i

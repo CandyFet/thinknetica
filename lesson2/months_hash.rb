@@ -10,5 +10,8 @@ august: 31,
 september: 30,
 october: 31,
 november: 30,
-december: 31}
-month_hash.each {|month, day| puts "In #{month} #{day} days" if value == 30}
+december: 31
+}
+month_hash.each do |month, day|
+  puts ("In #{month} #{day} days") if value == 30
+end
