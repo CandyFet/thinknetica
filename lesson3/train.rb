@@ -1,6 +1,5 @@
 class Train
-  attr_reader :route
-  attr_accessor :number, :type, :speed
+  attr_reader :route,:number, :type, :speed, :carriage_quantity
 
   def initialize(number, type, carriage_quantity)
     @number = number
@@ -32,7 +31,7 @@ class Train
   end
 
   def current_station
-    route.stations[@station_index + 1]
+    route.stations[@station_index]
   end
 
   def next_station
@@ -52,10 +51,10 @@ class Train
   end
 
   def move_back
-    return unless prev_station
+    return unless previous_station
 
     current_station.departure(self)
-    prev_station.arrival(self)
+    previous_station.arrival(self)
     @station_index -= 1
   end
 end
