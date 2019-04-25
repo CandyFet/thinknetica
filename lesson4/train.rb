@@ -21,10 +21,10 @@ class Train
   end
 
   def delete_carriage(carriage)
-    @carriages.delete(carriage) if self.speed.zero? && not @carriages.length.zero?
+    @carriages.delete(carriage) if self.speed.zero? && !@carriages.length.zero?
   end
 
-  def set_route=(route)
+  def route=(route)
     @route = route
     @station_index = 0
     current_station.arrival(self)

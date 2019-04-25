@@ -3,7 +3,7 @@ class Station
 
   def initialize(name)
     @name = name
-    @trains= []
+    @trains = []
   end
 
   def arrival(train)
@@ -15,7 +15,6 @@ class Station
   end
 
   def trains_by_type(type)
-    trains.select { |train| train.type == type}
+    trains.select { |train| train.type == type }
   end
-
 end
