@@ -1,6 +1,6 @@
 class PassengerTrain < Train
   def initialize(number)
     super
-    @using_types_of_carriages = %i[:passenger]
+    @type_of_carriage = %i[:passenger]
   end
 end

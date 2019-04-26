@@ -5,7 +5,7 @@ class Train
     @number = number
     @speed = 0
     @carriages = []
-    @using_types_of_carriages = []
+    @type_of_carriage = []
   end
 
   def accelerate(speed)
@@ -13,11 +13,11 @@ class Train
   end
 
   def stop
-    self.speed = 0
+    @speed = 0
   end
 
   def add_carriage(carriage)
-    @carriages << carriage if speed.zero? && @using_types_of_carriages.include?(carriage.type)
+    @carriages << carriage if speed.zero? && @type_of_carriage.include?(carriage.type)
   end
 
   def delete_carriage(carriage)
@@ -31,15 +31,15 @@ class Train
   end
 
   def current_station
-    route.stations[@station_index]
+    @route.stations[@station_index]
   end
 
   def next_station
-    route.stations[@station_index + 1]
+    @route.stations[@station_index + 1]
   end
 
   def previous_station
-    route.stations[@station_index - 1] if @station_index.positive?
+    @route.stations[@station_index - 1] if @station_index.positive?
   end
 
   def move_next
@@ -56,5 +56,9 @@ class Train
     current_station.departure(self)
     previous_station.arrival(self)
     @station_index -= 1
+  end
+
+  def to_s
+    @number
   end
 end
