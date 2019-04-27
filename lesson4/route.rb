@@ -12,4 +12,8 @@ class Route
     return if [stations.first, stations.last].include?(station)
     stations.delete(station)
   end
+
+  def to_s
+    @stations
+  end
 end
