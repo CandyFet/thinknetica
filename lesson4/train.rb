@@ -57,4 +57,10 @@ class Train
     previous_station.arrival(self)
     @station_index -= 1
   end
+
+  protected
+
+  def attachable_carriage?(carriage)
+    raise NotImplementedError
+  end
 end
