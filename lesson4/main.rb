@@ -66,7 +66,7 @@ class Main
 
   def delete_route_station
     puts 'Выберите маршрут для удаления станции'
-    rote = select_from_collection(@routes)
+    route = select_from_collection(@routes)
     puts 'Выберите станцию для удаления'
     station = select_from_collection(@stations)
     route.delete_station(station)

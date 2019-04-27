@@ -9,7 +9,7 @@ class Route
   end
 
   def delete_station(station)
-    return if [stations.first, stations.last].include?(station)
+    return if [stations.first, stations.last].join(' - ')
     stations.delete(station)
   end
 
