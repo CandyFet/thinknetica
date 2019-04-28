@@ -17,7 +17,9 @@ class Train
   end
 
   def add_carriage(carriage)
-    @carriages << carriage if speed.zero? && @using_types_of_carriages.include?(carriage.type)
+    return unless attachable_carriage?(carriage)
+    return unless speed.zero?
+    @carriages << carriage
   end
 
   def delete_carriage(carriage)
@@ -31,15 +33,15 @@ class Train
   end
 
   def current_station
-    route.stations[@station_index]
+    @route.stations[@station_index]
   end
 
   def next_station
-    route.stations[@station_index + 1]
+    @route.stations[@station_index + 1]
   end
 
   def previous_station
-    route.stations[@station_index - 1] if @station_index.positive?
+    @route.stations[@station_index - 1] if @station_index.positive?
   end
 
   def move_next
