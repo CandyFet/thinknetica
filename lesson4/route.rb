@@ -9,11 +9,11 @@ class Route
   end
 
   def delete_station(station)
-    return if [stations.first, stations.last].join(' - ')
+    return if [stations.first, stations.last].include?(station)
     stations.delete(station)
   end
 
   def to_s
-    @stations
+    [stations.first, stations.last].join(' - ')
   end
 end
