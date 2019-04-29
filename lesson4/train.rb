@@ -5,7 +5,6 @@ class Train
     @number = number
     @speed = 0
     @carriages = []
-    @using_types_of_carriages = []
   end
 
   def accelerate(speed)
@@ -23,7 +22,7 @@ class Train
   end
 
   def delete_carriage(carriage)
-    @carriages.delete(carriage) if self.speed.zero? && !@carriages.length.zero?
+    @carriages.delete(carriage) if self.speed.zero?
   end
 
   def route=(route)

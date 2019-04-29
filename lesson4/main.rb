@@ -33,7 +33,9 @@ class Main
   def create_new_train
     puts 'Введите номер поезда'
     number = gets.chomp
-    @trains << Train.new(number)
+    train_type_dialog
+    train = train_type_selection(number)
+    @trains << train
   end
 
   def routes_menu
@@ -68,7 +70,7 @@ class Main
     puts 'Выберите маршрут для удаления станции'
     route = select_from_collection(@routes)
     puts 'Выберите станцию для удаления'
-    station = select_from_collection(@stations)
+    station = select_from_collection(route.stations)
     route.delete_station(station)
   end
 
@@ -164,12 +166,27 @@ class Main
     when 5 then add_a_carriage
     when 6 then delete_a_carriage
     when 7 then move_train_menu
-    when 8
-    then
-      station = select_from_collection(@stations)
-      puts show_collection(station.trains)
-    else exit
+    when 8 then show_station_trains
     end
+  end
+
+  def train_type_dialog
+    puts 'Выберите тип поезда'
+    puts 'Нажмите 1 чтобы создать грузовой поезд'
+    puts 'Нажмите 2 чтобы создать пассажирский поезд'
+  end
+
+  def train_type_selection(number)
+    case gets.to_i
+    when 1 then train = CargoTrain.new(number)
+    when 2 then train = PassengerTrain.new(number)
+    end
+    train unless train.nil?
+  end
+
+  def show_station_trains
+    station = select_from_collection(@stations)
+    show_collection(station.trains)
   end
 end
 Main.new.show_user_menu
