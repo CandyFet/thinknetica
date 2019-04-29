@@ -1,3 +1,6 @@
+require_relative 'manufacturer_name.rb'
+require_relative 'instance_counter.rb'
+
 class Train
 
   @@trains = {}

@@ -1,3 +1,4 @@
+require_relative 'instance_counter.rb'
 class PassengerTrain < Train
   include InstanceCounter
   def initialize(number)
