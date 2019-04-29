@@ -5,6 +5,7 @@ require_relative 'cargo_carriage.rb'
 require_relative 'cargo_train.rb'
 require_relative 'passenger_carriage.rb'
 require_relative 'passenger_train.rb'
+require_relative 'manufacturer_name'
 
 class Main
   CARRIAGE_TYPES = %i[cargo passenger].freeze

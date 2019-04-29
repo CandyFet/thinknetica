@@ -1,4 +1,5 @@
 class PassengerTrain < Train
+  include InstanceCounter
   def initialize(number)
     super
   end

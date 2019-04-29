@@ -1,10 +1,16 @@
 class Train
+
+  @@trains = {}
+  include ManufacturerName
+  include InstanceCounter
   attr_reader :number, :speed, :carriages
 
   def initialize(number)
     @number = number
     @speed = 0
     @carriages = []
+    @@trains[@number] = self
+    register_instance
   end
 
   def accelerate(speed)
@@ -18,6 +24,7 @@ class Train
   def add_carriage(carriage)
     return unless attachable_carriage?(carriage)
     return unless speed.zero?
+
     @carriages << carriage
   end
 
@@ -57,6 +64,10 @@ class Train
     current_station.departure(self)
     previous_station.arrival(self)
     @station_index -= 1
+  end
+
+  def self.find(number)
+    @@trains[number]
   end
 
   protected
