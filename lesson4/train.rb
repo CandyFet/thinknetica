@@ -64,4 +64,8 @@ class Train
   def attachable_carriage?(carriage)
     raise NotImplementedError
   end
+
+  def to_s
+    @number
+  end
 end
