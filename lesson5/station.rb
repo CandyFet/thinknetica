@@ -4,6 +4,11 @@ class Station
   include InstanceCounter
 
   @stations = []
+
+  def self.all
+    @stations
+  end
+
   def initialize(name)
     @name = name
     @trains = []
@@ -25,9 +30,5 @@ class Station
 
   def to_s
     @name
-  end
-
-  def self.all
-    @stations
   end
 end

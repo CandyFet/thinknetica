@@ -8,6 +8,10 @@ class Train
   include InstanceCounter
   attr_reader :number, :speed, :carriages
 
+  def self.find(number)
+    @@trains[number]
+  end
+
   def initialize(number)
     @number = number
     @speed = 0
@@ -67,10 +71,6 @@ class Train
     current_station.departure(self)
     previous_station.arrival(self)
     @station_index -= 1
-  end
-
-  def self.find(number)
-    @@trains[number]
   end
 
   protected
