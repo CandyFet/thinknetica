@@ -2,11 +2,11 @@ module InstanceCounter
   def self.included(base)
     base.extend ClassMethods
     base.send :include, InstanceMethods
-    @instances = 0
   end
 
   module ClassMethods
-    attr_reader :instances
+    attr_accessor :instances
+    @instances ||= 0
   end
 
   module InstanceMethods
