@@ -7,7 +7,7 @@ class Station
   include Validation
 
   NAME_PATTERN = /^\w/.freeze
-  NAME_ERROR = 'Ошибка! Имя станции должно начинаться с цифры или с буквы'
+  NAME_ERROR = 'Ошибка! Имя станции должно начинаться с цифры или с буквы'.freeze
 
   attr_reader :name, :trains
 

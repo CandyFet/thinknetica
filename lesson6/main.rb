@@ -31,10 +31,10 @@ class Main
     puts 'Введите название станции'
     name = gets.chomp.capitalize!
     station = Station.new(name)
-    @stations << station if station.valid?
+    @stations << station
   rescue => e
     puts e.message
-    show_user_menu
+    retry
   end
 
   def create_new_train
@@ -43,6 +43,9 @@ class Main
     train_type_dialog
     train = train_type_selection(number)
     @trains << train
+  rescue => e
+    puts e.message
+    retry
   end
 
   def routes_menu
@@ -63,7 +66,7 @@ class Main
     @routes << route if route.valid?
   rescue => e
     puts e.message
-    show_user_menu
+    retry
   end
 
   def add_station_to_route
@@ -72,8 +75,6 @@ class Main
     puts 'Выберите маршрут'
     route = select_from_collection(@routes)
     return if route.nil?
-
-    route.add_station(station) if station.valid?
   end
 
   def delete_route_station
@@ -188,13 +189,9 @@ class Main
 
   def train_type_selection(number)
     case gets.to_i
-    when 1 then train = CargoTrain.new(number)
-    when 2 then train = PassengerTrain.new(number)
+    when 1 then CargoTrain.new(number)
+    when 2 then PassengerTrain.new(number)
     end
-    train if train.valid?
-  rescue => e
-    puts e.message
-    show_user_menu
   end
 
   def show_station_trains
