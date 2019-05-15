@@ -7,6 +7,7 @@ require_relative 'passenger_carriage.rb'
 require_relative 'passenger_train.rb'
 require_relative 'manufacturer_name.rb'
 require_relative 'instance_counter.rb'
+require_relative 'validation.rb'
 
 class Main
   CARRIAGE_TYPES = %i[cargo passenger].freeze
@@ -29,7 +30,11 @@ class Main
   def create_new_station
     puts 'Введите название станции'
     name = gets.chomp.capitalize!
-    @stations << Station.new(name)
+    station = Station.new(name)
+    @stations << station if station.valid?
+  rescue => e
+    puts e.message
+    show_user_menu
   end
 
   def create_new_train
@@ -54,9 +59,11 @@ class Main
     start_station = select_from_collection(@stations)
     end_station = select_from_collection(@stations)
     return if start_station.nil? || end_station.nil?
-    return if start_station == end_station
-
-    @routes << Route.new(start_station, end_station)
+    route = Route.new(start_station, end_station)
+    @routes << route if route.valid?
+  rescue => e
+    puts e.message
+    show_user_menu
   end
 
   def add_station_to_route
@@ -65,7 +72,8 @@ class Main
     puts 'Выберите маршрут'
     route = select_from_collection(@routes)
     return if route.nil?
-    route.add_station(station)
+
+    route.add_station(station) if station.valid?
   end
 
   def delete_route_station
@@ -81,7 +89,7 @@ class Main
     train = select_from_collection(@trains)
     puts 'Выберите маршрут'
     route = select_from_collection(@routes)
-    train.route = route
+    train.add_route(route)
   end
 
   def add_a_carriage
@@ -183,7 +191,10 @@ class Main
     when 1 then train = CargoTrain.new(number)
     when 2 then train = PassengerTrain.new(number)
     end
-    train unless train.nil?
+    train if train.valid?
+  rescue => e
+    puts e.message
+    show_user_menu
   end
 
   def show_station_trains

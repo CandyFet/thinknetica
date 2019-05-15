@@ -1,6 +1,9 @@
 require_relative 'instance_counter.rb'
+require_relative 'validation.rb'
 class PassengerTrain < Train
   include InstanceCounter
+  include Validation
+
   def initialize(number)
     super
   end

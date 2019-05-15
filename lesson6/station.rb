@@ -1,8 +1,15 @@
+# frozen_string_literal: true
+
 require_relative 'instance_counter.rb'
+require_relative 'validation.rb'
 class Station
-  attr_reader :name, :trains
   include InstanceCounter
+  include Validation
+
   NAME_PATTERN = /^\w/.freeze
+  NAME_ERROR = 'Ошибка! Имя станции должно начинаться с цифры или с буквы'
+
+  attr_reader :name, :trains
 
   @stations = []
 
@@ -37,8 +44,6 @@ class Station
   protected
 
   def validate!
-    if name !~ NAME_PATTERN
-      raise 'Ошибка! Имя станции должно начинаться с цифры или с буквы'
-    end
+    raise NAME_ERROR unless name =~ NAME_PATTERN
   end
 end

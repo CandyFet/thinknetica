@@ -1,13 +1,19 @@
 require_relative 'manufacturer_name.rb'
 require_relative 'instance_counter.rb'
+require_relative 'validation.rb'
 
 class Train
 
-  @@trains = {}
   include ManufacturerName
   include InstanceCounter
-  attr_reader :number, :speed, :carriages
+  include Validation
+
   NUMBER_PATTERN = /^\w{3}-*\w{2}$/.freeze
+  NUMBER_ERROR = 'Ошибка! Допустимый формат номера поезда: три буквы или цифры в любом порядке, необязательный дефис (может быть, а может нет) и еще 2 буквы или цифры после дефиса.'.freeze
+
+  attr_reader :number, :speed, :carriages
+
+  @@trains = {}
 
   def self.find(number)
     @@trains[number]
@@ -41,7 +47,7 @@ class Train
     @carriages.delete(carriage) if self.speed.zero?
   end
 
-  def route=(route)
+  def add_route(route)
     @route = route
     @station_index = 0
     current_station.arrival(self)
@@ -82,9 +88,7 @@ class Train
   end
 
   def validate!
-    if number !~ NUMBER_PATTERN
-      raise 'Ошибка! Допустимый формат номера поезда: три буквы или цифры в любом порядке, необязательный дефис (может быть, а может нет) и еще 2 буквы или цифры после дефиса.'
-    end
+    raise NUMBER_ERROR unless number =~ NUMBER_PATTERN
   end
 
   def to_s

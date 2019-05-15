@@ -1,8 +1,16 @@
+# frozen_string_literal: true
+
 require_relative 'instance_counter.rb'
+require_relative 'validation.rb'
 class Route
-  attr_reader :stations
   include InstanceCounter
-  NAME_PATTERN = /^\w/.freeze
+  include Validation
+
+  CLASS_ERROR = 'Ошибка! В маршруте могут участвовать только станции.'
+  LOGIC_ERROR = 'Ошибка! Начальная станция не должна равняться конечной.'
+
+  attr_reader :stations
+
   def initialize(start_station, end_station)
     @stations = [start_station, end_station]
     validate!
@@ -26,8 +34,9 @@ class Route
   protected
 
   def validate!
-    if stations.first !~ NAME_PATTERN || stations.last !~ NAME_PATTERN
-      raise 'Ошибка! Имя станции должно начинаться с цифры или с буквы'
+    if stations.first.class != Station || stations.last.class != Station
+      raise CLASS_ERROR
     end
+    raise LOGIC_ERROR unless stations.first != stations.last
   end
 end
