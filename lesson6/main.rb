@@ -75,6 +75,7 @@ class Main
     puts 'Выберите маршрут'
     route = select_from_collection(@routes)
     return if route.nil?
+    route.add_station(station)
   end
 
   def delete_route_station

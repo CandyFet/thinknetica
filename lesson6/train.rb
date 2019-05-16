@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 require_relative 'manufacturer_name.rb'
 require_relative 'instance_counter.rb'
 require_relative 'validation.rb'
 
 class Train
-
   include ManufacturerName
   include InstanceCounter
   include Validation
 
   NUMBER_PATTERN = /^\w{3}-*\w{2}$/.freeze
-  NUMBER_ERROR = 'Ошибка! Допустимый формат номера поезда: три буквы или цифры в любом порядке, необязательный дефис (может быть, а может нет) и еще 2 буквы или цифры после дефиса.'.freeze
+  NUMBER_ERROR = 'Ошибка! Допустимый формат номера поезда: три буквы или цифры в любом порядке, необязательный дефис (может быть, а может нет) и еще 2 буквы или цифры после дефиса.'
 
   attr_reader :number, :speed, :carriages
 
@@ -81,17 +82,17 @@ class Train
     @station_index -= 1
   end
 
+  def to_s
+    @number
+  end
+
   protected
 
-  def attachable_carriage?(carriage)
+  def attachable_carriage?(_carriage)
     raise NotImplementedError
   end
 
   def validate!
     raise NUMBER_ERROR unless number =~ NUMBER_PATTERN
-  end
-
-  def to_s
-    @number
   end
 end
