@@ -108,14 +108,18 @@ class Main
   end
 
   def carriage_menu(carriage_type)
-    if carriage_type == :cargo
-      puts 'Введите объем вагона'
-      CargoCarriage.new(gets.to_i)
-    end
-    if carriage_type == :passenger
-      puts 'Введите количество мест в вагоне'
-      PassengerCarriage.new(gets.to_i)
-    end
+    cargo_selection(gets.to_i) if carriage_type == :cargo
+    passenger_selection(gets.to_i) if carriage_type == :passenger
+  end
+
+  def cargo_selection(volume)
+    puts 'Введите объем вагона'
+    CargoCarriage.new(volume)
+  end
+
+  def passenger_selection(seats)
+    puts 'Введите количество место в вагоне'
+    PassengerCarriage.new(seats)
   end
 
   def delete_a_carriage

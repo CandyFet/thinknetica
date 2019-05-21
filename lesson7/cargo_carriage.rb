@@ -23,9 +23,9 @@ class CargoCarriage
     puts @volume_amount - @current_volume
   end
 
-  private
+  protected
 
   def validate!
-    raise ATTRIBUTE_ERROR if volume_amount != Integer
+    raise ATTRIBUTE_ERROR if @volume_amount.class != Integer
   end
 end

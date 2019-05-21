@@ -23,7 +23,7 @@ class PassengerCarriage
     puts @seats - @taken_seats
   end
 
-  private
+  protected
 
   def validate!
     raise ATTRIBUTE_ERROR if seats.class != Integer
