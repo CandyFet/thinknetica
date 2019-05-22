@@ -5,17 +5,24 @@ class Carriage
   include ManufacturerName
 
   ATTRIBUTE_ERROR = 'Ошибка! Атрибут класса должен быть числом.'
+  NOT_ENOUGH_CAPACITY = 'Ошибка! Вагон заполнен.'
 
-  attr_reader :current_attribute
+  attr_reader :capacity
 
   def initialize(attribute_amount)
     @attribute_amount = attribute_amount
-    @current_attribute = 0
+    @occupied_capacity = 0
     validate!
   end
 
-  def attribute_left
-    @attribute_amount - @current_attribute
+  def occupy_capacity(value)
+    raise NOT_ENOUGH_CAPACITY if value > available_capacity
+
+    @occupied_capacity += value
+  end
+
+  def available_capacity
+    @capacity - @occupied_capacity
   end
 
   protected
