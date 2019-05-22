@@ -1,31 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'manufacturer_name.rb'
-class PassengerCarriage
-  include ManufacturerName
+require_relative 'carriage.rb'
+class PassengerCarriage < Carriage
+  attr_reader :type
 
-  ATTRIBUTE_ERROR = 'Ошибка! Количество мест должно быть числом'
-
-  attr_reader :type, :taken_seats
-
-  def initialize(seats)
+  def initialize(attribute_amount)
     @type = :passenger
-    @seats = seats
-    @taken_seats = 0
-    validate!
+    super
   end
 
   def take_a_seat
     @taken_seats += 1 unless @seats < @taken_seats
-  end
-
-  def seats_left
-    puts @seats - @taken_seats
-  end
-
-  protected
-
-  def validate!
-    raise ATTRIBUTE_ERROR if seats.class != Integer
   end
 end
