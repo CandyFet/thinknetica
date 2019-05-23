@@ -1,4 +1,5 @@
 class Train
+  include manufacturer_name
   attr_reader :number, :speed, :carriages
 
   def initialize(number)
