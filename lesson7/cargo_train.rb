@@ -13,6 +13,6 @@ class CargoTrain < Train
   protected
 
   def attachable_carriage?(carriage)
-    carriage.is_a?(PassengerCarriage)
+    carriage.is_a?(CargoCarriage)
   end
 end

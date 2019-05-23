@@ -88,7 +88,7 @@ class Train
 
   protected
 
-  def attachable_carriage?(_carriage)
+  def attachable_carriage?(carriage)
     raise NotImplementedError
   end
 
