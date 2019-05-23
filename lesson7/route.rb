@@ -6,8 +6,8 @@ class Route
   include InstanceCounter
   include Validation
 
-  CLASS_ERROR = 'Ошибка! В маршруте могут участвовать только станции.'.freeze
-  LOGIC_ERROR = 'Ошибка! Начальная станция не должна равняться конечной.'.freeze
+  CLASS_ERROR = 'Ошибка! В маршруте могут участвовать только станции.'
+  LOGIC_ERROR = 'Ошибка! Начальная станция не должна равняться конечной.'
 
   attr_reader :stations
 
