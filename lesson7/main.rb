@@ -109,8 +109,8 @@ class Main
   end
 
   def carriage_menu(carriage_type)
-    cargo_selection(gets.to_i) if carriage_type.is_a? == CargoCarriage
-    passenger_selection(gets.to_i) if carriage_type.is_a? == PassengerCarriage
+    cargo_selection(gets.to_i) if carriage_type.is_a?(CargoCarriage)
+    passenger_selection(gets.to_i) if carriage_type.is_a?(PassengerCarriage)
   end
 
   def cargo_selection
@@ -214,15 +214,19 @@ class Main
     end
   end
 
-  def show_train_carriages
+  def select_train_carriage
     train = select_from_collection(@trains)
     carriage = select_from_collection(train.carriages)
     carriage
   end
 
   def capacity_menu(carriage)
-    puts 'Введите вместимость вагона'
-    carriage.occupy_capacity(gets.to_i)
+    if carriage.is_a(CargoCarriage)
+      puts 'Введите вместимость вагона'
+      carriage.occupy_capacity(gets.to_i)
+    else
+      puts 'Добавлено одно место в вагон'
+    end
   end
 
   def show_station_trains
