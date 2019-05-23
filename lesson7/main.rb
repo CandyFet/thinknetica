@@ -109,18 +109,22 @@ class Main
   end
 
   def carriage_menu(carriage_type)
-    cargo_selection(gets.to_i) if carriage_type.is_a?(CargoCarriage)
-    passenger_selection(gets.to_i) if carriage_type.is_a?(PassengerCarriage)
+    case carriage_type
+    when :cargo then cargo_selection
+    when :passenger then passenger_selection
+    end
   end
 
   def cargo_selection
     puts 'Введите объем вагона'
-    CargoCarriage.new(gets.to_i)
+    cargo = CargoCarriage.new(gets.to_i)
+    cargo
   end
 
   def passenger_selection
     puts 'Введите количество мест в вагоне'
-    PassengerCarriage.new(gets.to_i)
+    cargo = PassengerCarriage.new(gets.to_i)
+    cargo
   end
 
   def delete_a_carriage
@@ -221,10 +225,11 @@ class Main
   end
 
   def capacity_menu(carriage)
-    if carriage.is_a(CargoCarriage)
-      puts 'Введите вместимость вагона'
+    if carriage.is_a?(CargoCarriage)
+      puts 'Введите добавляемый объем в вагон'
       carriage.occupy_capacity(gets.to_i)
     else
+      carriage.occupy_capacity
       puts 'Добавлено одно место в вагон'
     end
   end
@@ -235,7 +240,7 @@ class Main
   end
 
   def add_carriage_capacity
-    capacity_menu(show_train_carriages)
+    capacity_menu(select_train_carriage)
   end
 end
 Main.new.show_user_menu

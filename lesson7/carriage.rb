@@ -9,8 +9,8 @@ class Carriage
 
   attr_reader :capacity
 
-  def initialize(attribute_amount)
-    @attribute_amount = attribute_amount
+  def initialize(capacity)
+    @capacity = capacity
     @occupied_capacity = 0
     validate!
   end
@@ -28,6 +28,6 @@ class Carriage
   protected
 
   def validate!
-    raise ATTRIBUTE_ERROR if @attribute_amount.class != Integer
+    raise ATTRIBUTE_ERROR if @capacity.class != Integer
   end
 end
