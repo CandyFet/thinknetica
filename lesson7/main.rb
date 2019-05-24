@@ -117,12 +117,12 @@ class Main
 
   def cargo_selection
     puts 'Введите объем вагона'
-    cargo = CargoCarriage.new(gets.to_i)
+    CargoCarriage.new(gets.to_i)
   end
 
   def passenger_selection
     puts 'Введите количество мест в вагоне'
-    cargo = PassengerCarriage.new(gets.to_i)
+    PassengerCarriage.new(gets.to_i)
   end
 
   def delete_a_carriage
@@ -218,7 +218,7 @@ class Main
 
   def select_train_carriage
     train = select_from_collection(@trains)
-    carriage = select_from_collection(train.carriages)
+    select_from_collection(train.carriages)
   end
 
   def capacity_menu(carriage)
@@ -231,7 +231,7 @@ class Main
     end
   rescue StandardError => e
     puts e.message
-    retry
+    show_user_menu
   end
 
   def show_station_trains
